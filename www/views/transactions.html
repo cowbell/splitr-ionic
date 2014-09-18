@@ -1,0 +1,19 @@
+<ion-content>
+	<ion-list>
+		<div class="item item-divider" ng-repeat-start="transactionsByDay in transactionsGroupedByDay">
+			{{transactionsByDay[0].date}}
+		</div>
+		<div class="item item-avatar" ng-repeat="transaction in transactionsByDay" ng-repeat-end>
+			<img gravatar-src="'{{transaction.payer.email}}'" />
+	    	{{transaction.description}}
+	    	<p><i class="ion-clock"></i> {{transaction.time}} <i class="ion-person-stalker"></i> {{transaction.participants.length}} </p>
+	    	<amount value="{{transaction.amount}}" currency="{{budget.currency}}"/>
+	  	</div>	
+	</ion-list>
+	<div class="card" ng-if="budget.transactions.length === 0">
+	  <div class="item item-text-wrap">
+	    No transactions yet.
+	  </div>
+	</div>
+</ion-content>
+

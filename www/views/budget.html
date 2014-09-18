@@ -1,0 +1,16 @@
+<ion-view>
+    <ion-nav-bar class="bar-balanced" animation="nav-title-slide-ios7">
+        <button class="button button-icon" menu-toggle="left">
+            <i class="icon ion-navicon"></i>
+            {{budget.name}} budget
+        </button>
+    </ion-nav-bar>
+	<ion-tabs class="tabs-balanced tabs-icon-top">
+	  <ion-tab icon="ion-card" title="Transactions">
+	    <div ng-include src="'/views/transactions.html'"></div>
+	  </ion-tab>
+	  <ion-tab icon="ion-ios7-people" title="Members">
+	    <div ng-include src="'/views/members.html'"></div>
+	  </ion-tab>
+	</ion-tabs>
+</ion-view>

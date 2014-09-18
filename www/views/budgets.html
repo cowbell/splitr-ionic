@@ -1,0 +1,15 @@
+<ion-view>
+    <ion-nav-bar class="bar-balanced" animation="nav-title-slide-ios7">
+        <button class="button button-icon" menu-toggle="left">
+            <i class="icon ion-navicon"></i>
+            Budgets
+        </button>
+    </ion-nav-bar>
+	<ion-content>
+		<ion-list>
+			<ion-item ng-repeat="budget in budgets" ui-sref="main.budget({budgetId: budget.id})">
+				{{budget.name}}
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

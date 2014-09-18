@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('splitr', ['ionic'])
+angular.module('splitr', ['ionic','ui.gravatar'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,43 @@ angular.module('splitr', ['ionic'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  
+  $stateProvider
+    .state('main', {
+        url: "",
+        abstract: true,
+        templateUrl: "views/main.html",
+        controller: 'MainCtrl',
+        resolve: {
+          budgets: function(Budget){
+            return Budget.getAll();
+          }
+        }
+    })
+    .state('main.budgets', {
+        url: '/budgets',
+        views: {
+            'main': {
+                templateUrl: 'views/budgets.html',
+                controller: 'BudgetsCtrl'
+            }
+        }
+    })
+    .state('main.budget', {
+      url: '/budgets/:budgetId',
+      views: {
+        'main': {
+          templateUrl: 'views/budget.html',
+          controller: 'BudgetCtrl'
+        }
+      },
+      resolve: {
+        budget: function(Budget, $stateParams){
+          return Budget.findById($stateParams.budgetId);
+        }
+      }
+    });
 
+
+  $urlRouterProvider.otherwise('/budgets');
 });
 
