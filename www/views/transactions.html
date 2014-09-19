@@ -1,19 +1,38 @@
-<ion-content>
-	<ion-list>
-		<div class="item item-divider" ng-repeat-start="transactionsByDay in transactionsGroupedByDay">
-			{{transactionsByDay[0].date}}
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-balanced" animation="nav-title-slide-ios7">
+        <button class="button button-icon" menu-toggle="left">
+            <i class="icon ion-navicon"></i>
+            {{budget.name}} budget transactions
+        </button>
+       	<div class="buttons pull-right">
+            <button class="button pull-right button-icon icon ion-plus" ng-click="addNewTransaction()"></button>
+        </div>
+    </ion-header-bar>
+	<ion-content>
+		<ion-list>
+			<div ng-repeat="transactionsByDay in transactionsGroupedByDay">
+				<div class="item item-divider">
+					{{transactionsByDay[0].date}}
+				</div>
+				<div class="item item-avatar" ng-click="showDetails(transaction)" ng-repeat-start="transaction in transactionsByDay">
+					<img gravatar-src="'{{transaction.payer.email}}'" />
+			    	{{transaction.description}}
+			    	<p><i class="ion-clock"></i> {{transaction.time}} <i class="ion-person-stalker"></i> {{transaction.participants.length}} </p>
+			    	<amount value="{{transaction.amount}}" currency="{{budget.currency}}"></amount>
+			  	</div>
+			  	<div class="item item-participants" ng-show="showDetailsTransactionId == transaction.id" ng-repeat-end>
+			  		<h2>Participants</h2>
+			  		<img ng-repeat="participant in transaction.participants" gravatar-src="'{{participant.email}}'" />
+				</div>
+			</div>
+		</ion-list>
+		<div class="card" ng-if="budget.transactions.length === 0">
+		  <div class="item item-text-wrap">
+		    No transactions yet.
+		  </div>
 		</div>
-		<div class="item item-avatar" ng-repeat="transaction in transactionsByDay" ng-repeat-end>
-			<img gravatar-src="'{{transaction.payer.email}}'" />
-	    	{{transaction.description}}
-	    	<p><i class="ion-clock"></i> {{transaction.time}} <i class="ion-person-stalker"></i> {{transaction.participants.length}} </p>
-	    	<amount value="{{transaction.amount}}" currency="{{budget.currency}}"/>
-	  	</div>	
-	</ion-list>
-	<div class="card" ng-if="budget.transactions.length === 0">
-	  <div class="item item-text-wrap">
-	    No transactions yet.
-	  </div>
-	</div>
-</ion-content>
+
+	</ion-content>
+</ion-view>
+
 

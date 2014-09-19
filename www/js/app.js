@@ -45,6 +45,7 @@ angular.module('splitr', ['ionic','ui.gravatar'])
         }
     })
     .state('main.budget', {
+      abstract: true,
       url: '/budgets/:budgetId',
       views: {
         'main': {
@@ -55,6 +56,31 @@ angular.module('splitr', ['ionic','ui.gravatar'])
       resolve: {
         budget: function(Budget, $stateParams){
           return Budget.findById($stateParams.budgetId);
+        }
+      }
+    })
+    .state('main.budget.details', {
+      url: '',
+      views: {
+        'detailsTab': {
+          templateUrl: 'views/budget-details.html'
+        }
+      }
+    })
+    .state('main.budget.transactions', {
+      url: '/transactions',
+      views: {
+        'transactionsTab': {
+          templateUrl: 'views/transactions.html',
+          controller: 'TransactionsCtrl'
+        }
+      }
+    })
+    .state('main.budget.members', {
+      url: '/members',
+      views: {
+        'membersTab': {
+          templateUrl: 'views/members.html'
         }
       }
     });

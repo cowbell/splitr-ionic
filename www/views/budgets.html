@@ -7,7 +7,7 @@
     </ion-nav-bar>
 	<ion-content>
 		<ion-list>
-			<ion-item ng-repeat="budget in budgets" ui-sref="main.budget({budgetId: budget.id})">
+			<ion-item ng-repeat="budget in budgets" ui-sref="main.budget.transactions({budgetId: budget.id})">
 				{{budget.name}}
 			</ion-item>
 		</ion-list>

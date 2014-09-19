@@ -14,7 +14,7 @@
           <i class="icon ion-clipboard"></i>
           Budgets
         </div>
-        <a nav-clear class="item" ng-repeat="budget in budgets" ui-sref="main.budget({budgetId: budget.id})" menu-toggle="left">
+        <a nav-clear class="item" ng-repeat="budget in budgets" ui-sref="main.budget.transactions({budgetId: budget.id})" menu-toggle="left">
           {{budget.name}}
         </a>
       </div>
