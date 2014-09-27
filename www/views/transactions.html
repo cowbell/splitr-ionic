@@ -14,16 +14,20 @@
 				<div class="item item-divider">
 					{{transactionsByDay[0].date}}
 				</div>
-				<div class="item item-avatar" ng-click="showDetails(transaction)" ng-repeat-start="transaction in transactionsByDay">
+				<div class="item item-avatar" ng-click="showDetails(transaction)" ng-repeat="transaction in transactionsByDay">
 					<img gravatar-src="'{{transaction.payer.email}}'" />
 			    	{{transaction.description}}
-			    	<p><i class="ion-clock"></i> {{transaction.time}} <i class="ion-person-stalker"></i> {{transaction.participants.length}} </p>
+			    	<p class="transaction-details">
+			    		<i class="ion-clock">{{transaction.time}}</i> 
+			    		<i class="ion-person-stalker"></i>
+			    		<img class="img-participant" ng-repeat="participant in transaction.participants" gravatar-src="'{{participant.email}}'" />
+			    	</p>
 			    	<amount value="{{transaction.amount}}" currency="{{budget.currency}}"></amount>
 			  	</div>
-			  	<div class="item item-participants" ng-show="showDetailsTransactionId == transaction.id" ng-repeat-end>
+			  	<!-- <div class="item item-participants" ng-show="showDetailsTransactionId == transaction.id" ng-repeat-end>
 			  		<h2>Participants</h2>
 			  		<img ng-repeat="participant in transaction.participants" gravatar-src="'{{participant.email}}'" />
-				</div>
+				</div> -->
 			</div>
 		</ion-list>
 		<div class="card" ng-if="budget.transactions.length === 0">

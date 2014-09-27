@@ -1,11 +1,7 @@
 /* Empty. Add your own CSS if you like */
-.item.item-participants img{
-	float: right;
-	top: 16px;
-    left: 16px;
-    max-width: 30px;
-    max-height: 30px;
-    width: 100%;
+.item.item-participants img, img.img-participant{
+	max-width: 20px;
+    max-height: 20px;
     border-radius: 4px;
     margin-left: 3px;
 }
@@ -13,4 +9,15 @@
 	display: inline;
 	float: left;
 	line-height: 30px;
+}
+p.transaction-details{
+    line-height: 20px;
+}
+p.transaction-details > img,
+p.transaction-details > i
+{
+    float: left;
+}
+p.transaction-details > i:first-child{
+    margin-right: 5px;
 }
