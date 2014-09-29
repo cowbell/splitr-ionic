@@ -21,3 +21,8 @@ p.transaction-details > i
 p.transaction-details > i:first-child{
     margin-right: 5px;
 }
+/*TODO figure out smth else, align-left title in nav-bar*/
+.bar .title
+{
+    left: 38px !important;
+}

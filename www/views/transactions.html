@@ -1,13 +1,7 @@
-<ion-view hide-nav-bar="true">
-	<ion-header-bar class="bar-balanced" animation="nav-title-slide-ios7">
-        <button class="button button-icon" menu-toggle="left">
-            <i class="icon ion-navicon"></i>
-            {{budget.name}} budget transactions
-        </button>
-       	<div class="buttons pull-right">
-            <button class="button pull-right button-icon icon ion-plus" ng-click="addNewTransaction()"></button>
-        </div>
-    </ion-header-bar>
+<ion-view title="{{budget.name}} - transactions">
+    <ion-nav-buttons side="right">
+    	<button class="button pull-right button-icon icon ion-plus" ng-click="addNewTransaction()"></button>
+    </ion-nav-buttons>
 	<ion-content>
 		<ion-list>
 			<div ng-repeat="transactionsByDay in transactionsGroupedByDay">

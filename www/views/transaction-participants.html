@@ -1,0 +1,18 @@
+<ion-view title="Participants">
+    <ion-nav-buttons side="right">
+    	<button class="button pull-right button-icon icon ion-plus" ng-click="addNewParticipant()"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <div class="item item-avatar" ng-repeat="participant in transaction.participants">
+                <img gravatar-src="'{{participant.email}}'" />
+                <h2>{{participant.name}}</h2>
+            </div>
+        </ion-list>
+        <div class="card" ng-if="transaction.participants.length === 0">
+            <div class="item item-text-wrap">
+                No participants yet.
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
