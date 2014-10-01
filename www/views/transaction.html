@@ -1,9 +1,13 @@
 <ion-view>
+    <ion-nav-buttons side="left">
+    	<button class="button pull-right button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    
     <ion-tabs class="tabs-balanced tabs-icon-top">
         <ion-tab icon="ion-compose" title="Transactions" ui-sref="transaction.details">
             <ion-nav-view name="detailsTab"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon="ion-ios7-people" title="Members" ui-sref="transaction.participants">
+        <ion-tab icon="ion-ios7-people" title="Participants" ui-sref="transaction.participants">
             <ion-nav-view name="participantsTab"></ion-nav-view>
         </ion-tab>
     </ion-tabs>

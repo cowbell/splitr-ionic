@@ -86,7 +86,7 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
                     var budget = Budget.findById(parseInt($stateParams.budgetId));
                     var transaction = budget.transactions.filter(function(t) {
                         return t.id === parseInt($stateParams.transactionId);
-                    })[0]
+                    })[0];
                     return transaction;
                 }
             }

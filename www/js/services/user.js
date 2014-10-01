@@ -3,7 +3,7 @@ angular.module('splitr.services')
 		var users = [
 			{ id: 1, name: 'Tomasz Subik' },
 			{ id: 2, name: 'Kuba Kuźma' }
-		]
+		];
 
 		return {
 			findByBudgetId: function(budgetId){
@@ -14,9 +14,9 @@ angular.module('splitr.services')
 				if(finded.length > 0){
 					return finded[0];
 				}
-			}
+			},
 			getAll: function(){
 				return users;
 			}
-		}
+		};
 	});
