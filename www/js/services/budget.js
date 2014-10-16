@@ -1,5 +1,5 @@
 angular.module('splitr')
-    .factory('Budget', function(fixtures) {
+    .factory('Budget', function (fixtures) {
         var budgets = fixtures.budgets;
 
         return {
@@ -12,8 +12,8 @@ angular.module('splitr')
         }
 
         function findById(id) {
-            var filtered = budgets.filter(function(bud) {
-                return bud.id == id;
+            var filtered = budgets.filter(function (bud) {
+                return bud.id === id;
             });
             if (filtered.length > 0) {
                 return filtered[0];

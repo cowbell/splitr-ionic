@@ -1,7 +1,12 @@
 angular.module('splitr')
-    .controller('BudgetCtrl', function ($scope, $ionicPopup, budget) {
+    .controller('BudgetCtrl', function ($scope, $state, $ionicPopup, Transaction, budget) {
         $scope.budget = budget;
         $scope.member = {};
+
+        $scope.addNewTransaction = function () {
+            budget.newTransaction = new Transaction();
+            $state.go('transaction.details', { budgetId: budget.id, transactionId: budget.newTransaction.id });
+        }
 
         $scope.addNewMember = function () {
             // An elaborate, custom popup

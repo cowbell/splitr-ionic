@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('splitr', ['ionic', 'ui.gravatar'])
 
-.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
+.run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,7 +21,7 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('main', {
@@ -30,7 +30,7 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
             templateUrl: "views/main.html",
             controller: 'MainCtrl',
             resolve: {
-                budgets: function(Budget) {
+                budgets: function (Budget) {
                     return Budget.getAll();
                 }
             }
@@ -54,7 +54,7 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
                 }
             },
             resolve: {
-                budget: function(Budget, $stateParams) {
+                budget: function (Budget, $stateParams) {
                     return Budget.findById($stateParams.budgetId);
                 }
             }
@@ -82,10 +82,13 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
             templateUrl: 'views/transaction.html',
             controller: 'TransactionCtrl',
             resolve: {
-                transaction: function($stateParams, Budget) {
-                    var budget = Budget.findById(parseInt($stateParams.budgetId));
-                    var transaction = budget.transactions.filter(function(t) {
-                        return t.id === parseInt($stateParams.transactionId);
+                transaction: function ($stateParams, Budget) {
+                    var budget = Budget.findById($stateParams.budgetId);
+                    if (budget.newTransaction && budget.newTransaction.id === $stateParams.transactionId) {
+                        return budget.newTransaction;
+                    }
+                    var transaction = budget.transactions.filter(function (t) {
+                        return t.id === $stateParams.transactionId;
                     })[0];
                     return transaction;
                 }

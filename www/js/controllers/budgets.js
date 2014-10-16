@@ -1,4 +1,4 @@
 angular.module('splitr')
-	.controller('BudgetsCtrl', function(){
+    .controller('BudgetsCtrl', function () {
 
-	});
+    });
