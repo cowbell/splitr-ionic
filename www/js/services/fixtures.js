@@ -48,4 +48,4 @@ angular.module('splitr')
 			angular.extend(newObj, using);
 			return newObj;
 		}
-	})
+	});

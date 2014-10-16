@@ -19,5 +19,5 @@ angular.module('splitr')
 			// else{
 			// 	$scope.showDetailsTransactionId = transcation.id;
 			// }
-		}
-	})
+		};
+	});
