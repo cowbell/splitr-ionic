@@ -5,29 +5,32 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('splitr', ['ionic', 'ui.gravatar'])
-
-.run(function ($ionicPlatform) {
-    $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        }
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
-    });
-})
+angular.module('splitr', [
+        'ionic',
+        'angular-datepicker',
+        'ui.gravatar'
+    ])
+    .run(function ($ionicPlatform) {
+        $ionicPlatform.ready(function () {
+            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            // for form inputs)
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            }
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+        });
+    })
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('main', {
-            url: "",
+            url: '',
             abstract: true,
-            templateUrl: "views/main.html",
+            templateUrl: 'views/main.html',
             controller: 'MainCtrl',
             resolve: {
                 budgets: function (Budget) {
@@ -91,6 +94,9 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
                         return t.id === $stateParams.transactionId;
                     })[0];
                     return transaction;
+                },
+                budget: function ($stateParams, Budget) {
+                    return Budget.findById($stateParams.budgetId);
                 }
             }
         })
@@ -118,7 +124,6 @@ angular.module('splitr', ['ionic', 'ui.gravatar'])
                 }
             }
         });
-
 
     $urlRouterProvider.otherwise('/budgets');
 });

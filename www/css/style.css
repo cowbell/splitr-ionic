@@ -26,3 +26,7 @@ p.transaction-details > i:first-child{
 {
     left: 38px !important;
 }
+
+.item.item-checkbox.item-checkbox-right.item-avatar h2{
+    margin-left: 60px;
+}

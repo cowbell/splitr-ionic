@@ -2,7 +2,10 @@
     <ion-nav-buttons side="left">
     	<button class="button pull-right button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    
+    <ion-nav-buttons side="right">
+        <button class="button pull-right button-icon icon ion-checkmark" ng-click="saveChanges()"></button>
+    </ion-nav-buttons>
+
     <ion-tabs class="tabs-balanced tabs-icon-top">
         <ion-tab icon="ion-compose" title="Transactions" ui-sref="transaction.details">
             <ion-nav-view name="detailsTab"></ion-nav-view>
