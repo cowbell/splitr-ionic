@@ -1,32 +1,33 @@
 /* Empty. Add your own CSS if you like */
-.item.item-participants img, img.img-participant{
-	max-width: 20px;
+
+.item.item-participants img, img.img-participant {
+    max-width: 20px;
     max-height: 20px;
     border-radius: 4px;
     margin-left: 3px;
 }
-.item-participants h2{
-	display: inline;
-	float: left;
-	line-height: 30px;
+.item-participants h2 {
+    display: inline;
+    float: left;
+    line-height: 30px;
 }
-p.transaction-details{
+p.transaction-details {
     line-height: 20px;
 }
-p.transaction-details > img,
-p.transaction-details > i
-{
+p.transaction-details > img, p.transaction-details > i {
     float: left;
 }
-p.transaction-details > i:first-child{
+p.transaction-details > i:first-child {
     margin-right: 5px;
 }
 /*TODO figure out smth else, align-left title in nav-bar*/
-.bar .title
-{
+
+.bar .title {
     left: 38px !important;
 }
-
-.item.item-checkbox.item-checkbox-right.item-avatar h2{
+.item.item-checkbox.item-checkbox-right.item-avatar h2 {
     margin-left: 60px;
+}
+.title.on-left {
+    text-align: left;
 }

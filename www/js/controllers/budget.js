@@ -5,7 +5,7 @@ angular.module('splitr')
 
         $scope.addNewTransaction = function () {
             budget.newTransaction = new Transaction();
-            $state.go('transaction.details', { budgetId: budget.id, transactionId: budget.newTransaction.id });
+            $state.go('transaction', { budgetId: budget.id, transactionId: budget.newTransaction.id });
         }
 
         $scope.addNewMember = function () {

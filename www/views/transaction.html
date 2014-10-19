@@ -1,17 +1,50 @@
-<ion-view>
-    <ion-nav-buttons side="left">
-    	<button class="button pull-right button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button pull-right button-icon icon ion-checkmark" ng-click="saveChanges()"></button>
-    </ion-nav-buttons>
+<ion-view title="Transaction">
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-buttons side="left">
+            <button class="button pull-right button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button pull-right button-icon icon ion-checkmark" ng-click="saveChanges()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-    <ion-tabs class="tabs-balanced tabs-icon-top">
-        <ion-tab icon="ion-compose" title="Transactions" ui-sref="transaction.details">
-            <ion-nav-view name="detailsTab"></ion-nav-view>
-        </ion-tab>
-        <ion-tab icon="ion-ios7-people" title="Participants" ui-sref="transaction.participants">
-            <ion-nav-view name="participantsTab"></ion-nav-view>
-        </ion-tab>
-    </ion-tabs>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Description</span>
+                <input type="text" ng-model="transaction.description">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Date</span>
+                <input type="date" ng-model="transaction.date" placeholder="Date" />
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Amount</span>
+                <input type="number" ng-model="transaction.amount">
+            </label>
+            <div class="item item-divider">
+                Payer
+            </div>
+            <div class="item item-avatar" ng-click="choosePayer()">
+                <img gravatar-src="transaction.payer.email" />
+                <h2>{{transaction.payer.name}}</h2>
+            </div>
+            <div class="item item-divider">
+                Participants
+            </div>
+            <div class="item item-checkbox item-checkbox-right item-avatar" ng-repeat="member in members">
+                <img gravatar-src="member.email" />
+                <h2>{{member.name}}</h2>
+
+                <label class="checkbox checkbox-balanced">
+                    <input type="checkbox" ng-checked="isParticipant(member)">
+                </label>
+            </div>
+        </div>
+        <div class="card" ng-if="transaction.participants.length === 0">
+            <div class="item item-text-wrap">
+                No participants yet.
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

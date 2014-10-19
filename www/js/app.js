@@ -7,7 +7,6 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('splitr', [
         'ionic',
-        'angular-datepicker',
         'ui.gravatar'
     ])
     .run(function ($ionicPlatform) {
@@ -80,7 +79,6 @@ angular.module('splitr', [
             }
         })
         .state('transaction', {
-            abstract: true,
             url: '/budgets/:budgetId/transactions/:transactionId',
             templateUrl: 'views/transaction.html',
             controller: 'TransactionCtrl',
@@ -97,22 +95,6 @@ angular.module('splitr', [
                 },
                 budget: function ($stateParams, Budget) {
                     return Budget.findById($stateParams.budgetId);
-                }
-            }
-        })
-        .state('transaction.details', {
-            url: '',
-            views: {
-                'detailsTab': {
-                    templateUrl: 'views/transaction-details.html'
-                }
-            }
-        })
-        .state('transaction.participants', {
-            url: '/participants',
-            views: {
-                'participantsTab': {
-                    templateUrl: 'views/transaction-participants.html'
                 }
             }
         })

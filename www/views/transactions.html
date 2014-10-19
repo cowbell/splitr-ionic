@@ -12,7 +12,6 @@
 					<img gravatar-src="'{{transaction.payer.email}}'" />
 			    	{{transaction.description}}
 			    	<p class="transaction-details">
-			    		<i class="ion-clock">{{transaction.time}}</i>
 			    		<i class="ion-person-stalker"></i>
 			    		<img class="img-participant" ng-repeat="participant in transaction.participants" gravatar-src="'{{participant.email}}'" />
 			    	</p>

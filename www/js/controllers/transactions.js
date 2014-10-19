@@ -11,7 +11,7 @@ angular.module('splitr')
         $scope.showDetailsTransactionId = 0;
 
         $scope.showDetails = function (transaction) {
-            $state.go('transaction.details', {
+            $state.go('transaction', {
                 transactionId: transaction.id,
                 budgetId: budget.id
             });

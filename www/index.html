@@ -8,34 +8,26 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="lib/angular-native-picker/build/themes/default.css" />
-    <link rel="stylesheet" href="lib/angular-native-picker/build/themes/default.date.css" />
-    <link rel="stylesheet" href="lib/angular-native-picker/build/themes/default.time.css" />
 </head>
 
-<body ng-app="splitr" animation="slide-left-right-ios7">
+<body ng-app="splitr">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-balanced nav-title-slide-ios7" align-title="left">
-        <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">
-        </ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view>
+    <!--     <ion-nav-bar class="bar-balanced nav-title-slide-ios7" align-title="left">
+    </ion-nav-bar> -->
+    <ion-nav-view class="on-left" animation="no-animation">
     </ion-nav-view>
-    <div id="pickadate" data-tap-disabled="true">
-    </div>
-
-     <!-- ionic/angularjs js -->
+    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angular-native-picker/build/angular-datepicker.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-
-    <!-- your app's js -->
+    <!-- <script src="lib/angular-native-picker/build/angular-datepicker.js"></script>
+     --><!-- your app's js -->
     <script src="js/vendor/uuid.js"></script>
     <script src="js/utilities/array-extensions.js"></script>
+
     <script src="js/app.js"></script>
     <script src="js/services/budget.js"></script>
     <script src="js/services/transaction.js"></script>
