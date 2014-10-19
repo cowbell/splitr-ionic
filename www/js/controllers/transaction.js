@@ -1,7 +1,7 @@
 angular.module('splitr')
     .controller('TransactionCtrl', function ($scope, $ionicPopup, $ionicModal, $state, $stateParams, transaction, budget) {
         var payerSelectPopup;
-        $scope.transaction = transaction;
+        $scope.transaction = angular.copy(transaction);
         $scope.members = budget.members;
 
         $ionicModal.fromTemplateUrl(
@@ -15,15 +15,11 @@ angular.module('splitr')
         );
 
         $scope.goBack = function () {
-            $state.go('main.budget.transactions', {
-                budgetId: $stateParams.budgetId
-            });
+            goToTransactions();
         };
 
         $scope.isParticipant = function (member) {
-            return $scope.transaction.participants.filter(function (part) {
-                return part.id === member.id;
-            }).length > 0;
+            return findParticipant(member) !== undefined;
         };
 
         $scope.choosePayer = function () {
@@ -40,15 +36,36 @@ angular.module('splitr')
             payerSelectPopup.close();
         };
 
-        $scope.pickADate = function () {
-            $scope.datePicker.show();
+        $scope.changeParticipation = function (member) {
+            var participant, index;
+            participant = findParticipant(member);
+            if (participant) {
+                index = $scope.transaction.participants.indexOf(participant);
+                $scope.transaction.participants.splice(index, 1);
+            } else {
+                $scope.transaction.participants.push(member);
+            }
         };
 
-        $scope.close = function () {
-
+        $scope.saveChanges = function () {
+            angular.extend(transaction, $scope.transaction);
+            goToTransactions();
         };
 
-        $scope.clear = function () {
+        function goToTransactions() {
+            $state.go('main.budget.transactions', {
+                budgetId: $stateParams.budgetId
+            });
+        }
 
-        };
+        function findParticipant(member) {
+            var participants;
+            participants = $scope.transaction.participants.filter(function (part) {
+                return part.id === member.id;
+            });
+            if (participants.length > 0) {
+                return participants[0];
+            }
+            return undefined;
+        }
     });
