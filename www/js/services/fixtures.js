@@ -1,5 +1,5 @@
 angular.module('splitr')
-	.factory('fixtures', function(){
+	.factory('fixtures', function () {
 		var tomek = { id: '1', name: 'Tomasz Subik', email: 'tsubik@gmail.com' };
 		var kuba = { id: '2', name: 'Kuba Kuźma', email: 'kuba@jah.pl' };
 		var szymon = { id: '3', name: 'Szymon Nowak', email: 'szimek@gmail.com'};

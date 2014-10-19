@@ -9,7 +9,7 @@ angular.module('splitr', [
         'ionic',
         'ui.gravatar'
     ])
-    .run(function ($ionicPlatform) {
+    .run(function ($rootScope, $ionicPlatform, $log) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -20,6 +20,9 @@ angular.module('splitr', [
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+        });
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            $log.error('State changing error', error);
         });
     })
 
@@ -57,6 +60,9 @@ angular.module('splitr', [
             },
             resolve: {
                 budget: function (Budget, $stateParams) {
+                    // if (Budget.newBudget && Budget.newBudget.id === $stateParams.budgetId) {
+                    //     return Budget.newBudget;
+                    // }
                     return Budget.findById($stateParams.budgetId);
                 }
             }
@@ -91,6 +97,7 @@ angular.module('splitr', [
                     var transaction = budget.transactions.filter(function (t) {
                         return t.id === $stateParams.transactionId;
                     })[0];
+
                     return transaction;
                 },
                 budget: function ($stateParams, Budget) {

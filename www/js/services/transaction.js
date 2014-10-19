@@ -1,6 +1,9 @@
 angular.module('splitr')
     .factory('Transaction', function () {
-        var defaultObj = {
+        var defaultObj,
+            Trasaction;
+
+        defaultObj = {
             id: UUIDjs.create().toString(),
             description: undefined,
             amount: 0,
@@ -8,7 +11,7 @@ angular.module('splitr')
             participants: []
         };
 
-        var Transaction = function (data) {
+        Transaction = function (data) {
 
             this.initialize = function (data) {
                 angular.extend(this, defaultObj, data);
