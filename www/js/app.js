@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('splitr', [
         'ionic',
-        'ui.gravatar'
+        'ui.gravatar',
+        'ngStorage'
     ])
     .run(function ($rootScope, $ionicPlatform, $log) {
         $ionicPlatform.ready(function () {
@@ -89,19 +90,21 @@ angular.module('splitr', [
             templateUrl: 'views/transaction.html',
             controller: 'TransactionCtrl',
             resolve: {
-                transaction: function ($stateParams, Budget) {
-                    var budget = Budget.findById($stateParams.budgetId);
-                    if (budget.newTransaction && budget.newTransaction.id === $stateParams.transactionId) {
-                        return budget.newTransaction;
+                transactionData: function ($stateParams, Budget, Transaction) {
+                    var budget,
+                        transaction;
+                    if (Transaction.newTransaction && Transaction.newTransaction.id === $stateParams.transactionId) {
+                        return Transaction.newTransaction;
                     }
-                    var transaction = budget.transactions.filter(function (t) {
+                    budget = Budget.findById($stateParams.budgetId);
+                    transaction = budget.transactions.filter(function (t) {
                         return t.id === $stateParams.transactionId;
                     })[0];
 
-                    return transaction;
-                },
-                budget: function ($stateParams, Budget) {
-                    return Budget.findById($stateParams.budgetId);
+                    return {
+                        budget: budget,
+                        transaction: transaction
+                    };
                 }
             }
         })

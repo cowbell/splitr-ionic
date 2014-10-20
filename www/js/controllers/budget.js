@@ -4,8 +4,8 @@ angular.module('splitr')
         $scope.member = {};
 
         $scope.addNewTransaction = function () {
-            budget.newTransaction = new Transaction();
-            $state.go('transaction', { budgetId: budget.id, transactionId: budget.newTransaction.id });
+            Transaction.newTransaction = new Transaction();
+            $state.go('transaction', { budgetId: budget.id, transactionId: Transaction.newTransaction.id });
         }
 
         $scope.addNewMember = function () {
@@ -32,19 +32,4 @@ angular.module('splitr')
                 $scope.member = {};
             });
         };
-
-        $scope.totalForMember = function (member) {
-            var total = 0;
-
-            budget.transactions.forEach(function (tran) {
-                if (tran.payer === member) {
-                    total += tran.amount;
-                }
-                if (tran.participants.indexOf(member) >= 0) {
-                    total -= Math.round(tran.amount / tran.participants.length, 2);
-                }
-            });
-
-            return total;
-        }
     });

@@ -1,13 +1,16 @@
 angular.module('splitr')
-    .controller('TransactionCtrl', function ($scope, $ionicPopup, $ionicModal, $state, $stateParams, transaction, budget) {
-        var payerSelectPopup;
+    .controller('TransactionCtrl', function ($scope, $ionicModal, $state, $stateParams, transactionData, Budget, Transaction) {
+        var payerSelectModal;
+        var transaction = transactionData.transaction;
+        var budget = transactionData.budget;
+
         $scope.transaction = angular.copy(transaction);
         $scope.members = budget.members;
 
         $ionicModal.fromTemplateUrl(
-            'views/datepicker.html',
+            'views/payer-select-popup.html',
             function (modal) {
-                $scope.datePicker = modal;
+                $scope.payerSelectModal = modal;
             }, {
                 scope: $scope,
                 animation: 'slide-in-up'
@@ -18,22 +21,14 @@ angular.module('splitr')
             goToTransactions();
         };
 
-        $scope.isParticipant = function (member) {
-            return findParticipant(member) !== undefined;
-        };
-
         $scope.choosePayer = function () {
             // An elaborate, custom popup
-            payerSelectPopup = $ionicPopup.show({
-                templateUrl: 'views/payer-select-popup.html',
-                title: 'Choose payer',
-                scope: $scope
-            });
+            $scope.payerSelectModal.show()
         };
 
         $scope.selectPayer = function (member) {
             $scope.transaction.payer = member;
-            payerSelectPopup.close();
+            $scope.payerSelectModal.hide();
         };
 
         $scope.changeParticipation = function (member) {
@@ -49,6 +44,12 @@ angular.module('splitr')
 
         $scope.saveChanges = function () {
             angular.extend(transaction, $scope.transaction);
+            //angular.extend(transaction, $scope.transaction);
+            if (Transaction.newTransaction && Transaction.newTransaction.id === transaction.id) {
+                budget.transaction.push(transaction);
+                delete Transaction.newTransaction;
+            }
+            Budget.update(budget);
             goToTransactions();
         };
 

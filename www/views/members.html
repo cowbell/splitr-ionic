@@ -7,7 +7,7 @@
             <div class="item item-avatar" ng-repeat="member in budget.members">
                 <img gravatar-src="'{{member.email}}'" />
                 <h2>{{member.name}}</h2>
-                <amount value="{{totalForMember(member)}}" currency="{{budget.currency}}"></amount>
+                <amount value="{{budget.totalForMember(member)}}" currency="{{budget.currency}}"></amount>
             </div>
         </ion-list>
         <div class="card" ng-if="budget.members.length === 0">
