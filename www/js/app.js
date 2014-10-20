@@ -91,15 +91,16 @@ angular.module('splitr', [
             controller: 'TransactionCtrl',
             resolve: {
                 transactionData: function ($stateParams, Budget, Transaction) {
-                    var budget,
-                        transaction;
+                    var transaction;
+                    var budget = budget = Budget.findById($stateParams.budgetId);
+
                     if (Transaction.newTransaction && Transaction.newTransaction.id === $stateParams.transactionId) {
-                        return Transaction.newTransaction;
+                        transaction = Transaction.newTransaction;
+                    } else {
+                        transaction = budget.transactions.filter(function (t) {
+                            return t.id === $stateParams.transactionId;
+                        })[0];
                     }
-                    budget = Budget.findById($stateParams.budgetId);
-                    transaction = budget.transactions.filter(function (t) {
-                        return t.id === $stateParams.transactionId;
-                    })[0];
 
                     return {
                         budget: budget,
