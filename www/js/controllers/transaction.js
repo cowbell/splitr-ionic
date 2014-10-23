@@ -46,8 +46,8 @@ angular.module('splitr')
             angular.extend(transaction, $scope.transaction);
             //angular.extend(transaction, $scope.transaction);
             if (Transaction.newTransaction && Transaction.newTransaction.id === transaction.id) {
-                budget.transaction.push(transaction);
-                delete Transaction.newTransaction;
+                budget.transactions.push(transaction);
+                Transaction.newTransaction = undefined;
             }
             Budget.update(budget);
             goToTransactions();
