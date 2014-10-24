@@ -6,9 +6,6 @@ angular.module('splitr')
 		var wojtek = { id: '4', name: 'Wojtek Wnętrzak', email: 'wojtek@urizen.pl'};
 		var mikro = { id: '5', name: 'Mirek Boruta', email: 'mirek@mirobor.pl'};
 
-		// var wojtek = { }
-		// var mikro = { }
-
 		var users = [tomek, kuba];
 
 		var budgets = [
