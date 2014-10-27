@@ -9,7 +9,6 @@ var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var protractor = require('gulp-protractor').protractor;
 var webdriverUpdate = require('gulp-protractor').webdriver_update;
-var argv = require('yargs').argv;
 var isTest = false;
 
 var paths = {
