@@ -13,9 +13,9 @@ var isTest = false;
 
 var paths = {
     sass: ['./app/styles/**/*.scss'],
-    js: ['./app/scripts/**/*.js'],
+    js: ['./app/js/**/*.js'],
     jsTest: ['./tests/utilities/*.js'],
-    html: ['./app/views/**/*.html','./app/*.html'],
+    html: ['./app/views/**/*.html', './app/*.html'],
     lib: ['./app/components/**/*', './app/lib/**/*'],
     test: {
         e2e: 'tests/e2e/**/*-spec.js'
@@ -38,11 +38,12 @@ gulp.task('sass', function (done) {
 gulp.task('scripts', function () {
     return gulp.src(paths.js)
         .pipe(order([
-            'utility/*.js',
+            'utilities/*.js',
             'vendor/*.js',
             'app.js',
             'factories/*.js',
             'directives/*.js',
+            'services/*.js',
             'controllers/*.js'
         ]))
         .pipe(concat('app.js'))
@@ -50,7 +51,9 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('html', function () {
-    return gulp.src(paths.html, { base: 'app' })
+    return gulp.src(paths.html, {
+            base: 'app'
+        })
         .pipe(gulp.dest('./www'));
 });
 

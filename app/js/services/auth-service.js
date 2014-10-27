@@ -1,11 +1,11 @@
 angular.module('splitr')
-    .factory('AuthService', function (firebase) {
-    	return {
-    		signIn: function () {
+    .factory('AuthService', function(firebase) {
+        return {
+            signIn: function() {
 
-    		},
-    		signOut: function () {
+            },
+            signOut: function() {
 
-    		}
-    	}
+            }
+        };
     });
