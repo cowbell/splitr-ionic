@@ -1,26 +1,27 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var connect = require('gulp-connect');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var order = require('gulp-order');
-var clean = require('gulp-clean');
-var runSequence = require('run-sequence');
-var protractor = require('gulp-protractor').protractor;
-var webdriverUpdate = require('gulp-protractor').webdriver_update;
-var isTest = false;
+var gulp = require('gulp'),
+    concat = require('gulp-concat'),
+    connect = require('gulp-connect'),
+    sass = require('gulp-sass'),
+    minifyCss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    order = require('gulp-order'),
+    clean = require('gulp-clean'),
+    runSequence = require('run-sequence'),
+    protractor = require('gulp-protractor').protractor,
+    webdriverUpdate = require('gulp-protractor').webdriver_update,
+    ngConstant = require('gulp-ng-constant'),
 
-var paths = {
-    sass: ['./app/styles/**/*.scss'],
-    js: ['./app/js/**/*.js'],
-    jsTest: ['./tests/utilities/*.js'],
-    html: ['./app/views/**/*.html', './app/*.html'],
-    lib: ['./app/components/**/*', './app/lib/**/*'],
-    test: {
-        e2e: 'tests/e2e/**/*-spec.js'
-    }
-};
+    paths = {
+        sass: ['./app/styles/**/*.scss'],
+        js: ['./app/js/**/*.js'],
+        constants: ['./app/js/constants/*.json'],
+        jsTest: ['./tests/utilities/*.js'],
+        html: ['./app/views/**/*.html', './app/*.html'],
+        lib: ['./app/components/**/*', './app/lib/**/*'],
+        test: {
+            e2e: 'tests/e2e/**/*-spec.js'
+        }
+    };
 
 gulp.task('sass', function (done) {
     return gulp.src(paths.sass)
@@ -33,6 +34,13 @@ gulp.task('sass', function (done) {
             extname: '.min.css'
         }))
         .pipe(gulp.dest('./www/css/'));
+});
+
+gulp.task('constants', function () {
+    return gulp.src(paths.constants)
+        .pipe(ngConstant({ name: 'splitr.constants' }))
+        .pipe(rename('constants.js'))
+        .pipe(gulp.dest('./www/js/'));
 });
 
 gulp.task('scripts', function () {
@@ -98,11 +106,12 @@ gulp.task('clean', function () {
 
 gulp.task('watch', ['default'], function () {
     gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.constants, ['constants']);
     gulp.watch(paths.js, ['scripts']);
     gulp.watch(paths.html, ['html']);
     gulp.watch(paths.lib, ['lib']);
 });
 
 gulp.task('default', function (callback) {
-    runSequence('clean', ['sass', 'scripts', 'html', 'lib'], callback);
+    runSequence('clean', ['sass', 'constants', 'scripts', 'html', 'lib'], callback);
 });
