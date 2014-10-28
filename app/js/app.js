@@ -8,7 +8,8 @@
 angular.module('splitr', [
         'ionic',
         'ui.gravatar',
-        'ngStorage'
+        'ngStorage',
+        'lodash'
     ])
     .run(function ($rootScope, $ionicPlatform, $log) {
         $ionicPlatform.ready(function () {
